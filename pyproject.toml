@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools==84.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "strands-gemma-order-stable-hybrid"
+version = "0.1.0"
+description = "Order-stable isolated-option and tied-set hybrid runtime"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE", "LICENSE-MIT", "NOTICE", "THIRD_PARTY_NOTICES.md"]
+authors = [{ name = "Manu Mishra" }]
+requires-python = ">=3.10"
+dependencies = [
+  "strands-decider @ git+https://github.com/strands-labs/strands-decider.git@0ac22a97e584f3ccf87cc9b8cc5fdbad57cdf534",
+  "torch==2.14.1",
+  "transformers==5.18.0",
+  "peft==0.21.2",
+  "accelerate==1.15.0",
+  "pydantic==2.12.5",
+  "safetensors==0.8.0",
+]
+
+[project.urls]
+Repository = "https://github.com/manu-mishra/strands-gemma-order-stable-hybrid"
+Documentation = "https://github.com/manu-mishra/strands-gemma-order-stable-hybrid#readme"
+
+[project.optional-dependencies]
+dev = ["pytest==9.1.1", "ruff==0.17.1"]
+
+[project.scripts]
+strands-gemma-order-stable-hybrid = "strands_gemma_order_stable_hybrid.cli:main"
+
+[tool.setuptools]
+include-package-data = false
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "B", "UP"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

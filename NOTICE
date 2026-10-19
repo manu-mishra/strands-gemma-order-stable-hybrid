@@ -1,0 +1,57 @@
+Strands Gemma Order-Stable Hybrid
+Copyright 2026 Manu Mishra
+
+This distribution includes an isolated-option adaptation based on the Strands
+Decider project:
+
+  Source: https://github.com/strands-labs/strands-decider
+  Commit: 0ac22a97e584f3ccf87cc9b8cc5fdbad57cdf534
+  License: Apache License 2.0
+
+Distributed Strands-derived adaptation paths covered by Apache-2.0:
+
+  src/strands_gemma_order_stable_hybrid/option_branches.py
+  tests/test_option_branches.py
+
+The source module adapts the accepted isolated-option retrofit and composes
+with the pinned Strands typed engine, renderer, schema, model wrapper, and
+PointerHead interfaces. The changes add isolated semantic-option branches,
+equal logical option positions, full batch-one branch recomputation,
+pointer-feature extraction, semantic mapping, and corresponding tests. This
+exact package path was not present in the pinned upstream tree.
+
+Separately authored project files offered under the MIT terms in LICENSE-MIT:
+
+  src/strands_gemma_order_stable_hybrid/hybrid.py
+  src/strands_gemma_order_stable_hybrid/server.py
+  src/strands_gemma_order_stable_hybrid/set_residual.py
+  src/strands_gemma_order_stable_hybrid/artifacts.py
+  tests/test_hybrid_artifacts.py
+  tests/test_server.py
+  tests/test_set_residual.py
+
+These files adapt or package the completed project experiment, tied relational
+residual, server, and portable-artifact boundary. Their MIT terms do not
+replace Apache-2.0 obligations for imported or composed Strands material.
+No absent evaluation benchmark path is claimed as part of this distribution.
+
+The model architecture uses the following pinned upstream components. The GitHub source release does not bundle model files. The Hugging Face model release includes the authenticated replacement head, inherited adapter, and relational residual, but does not bundle the complete upstream checkpoint or Gemma base:
+
+  Strands checkpoint:
+  https://huggingface.co/StrandsAgents/strands-decider-E2B-gemma4-v1-2610
+  Revision: d383ecf8534b13d49b3b567a1b66f88fca6d50ba
+
+  Gemma base:
+  https://huggingface.co/google/gemma-4-E2B-it
+  Revision: 3e22461f65e89153144f8adb70e3b8c2cc9845a7
+
+Gemma license and terms references:
+
+  https://ai.google.dev/gemma/apache_2
+  https://ai.google.dev/gemma/docs/core/model_card_4
+  https://ai.google.dev/gemma/terms
+
+Strands-derived source is provided under Apache-2.0 in LICENSE. Separately
+authored project portions are offered under the MIT terms in LICENSE-MIT.
+These notices do not grant trademark rights and do not modify either license.
+Model components and datasets remain subject to their applicable source terms. Bulk datasets are not included. Two attributed ARC Easy failure examples are paraphrased and reformatted on the model page under CC BY-SA 4.0; see THIRD_PARTY_NOTICES.md.

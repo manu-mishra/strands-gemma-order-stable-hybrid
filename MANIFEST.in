@@ -1,0 +1,20 @@
+include README.md
+include blog.md
+include MODEL_CARD.md
+include HF_MODEL_CARD.md
+include uv.lock
+include LICENSE
+include LICENSE-MIT
+include NOTICE
+include THIRD_PARTY_NOTICES.md
+recursive-include docs *
+recursive-include results *
+recursive-include tools *
+recursive-include tests *
+global-exclude __pycache__
+global-exclude *.py[cod]
+global-exclude *.safetensors
+global-exclude *.bin
+global-exclude *.pt
+global-exclude *.pth
+global-exclude *.ckpt

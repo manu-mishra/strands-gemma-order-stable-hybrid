@@ -1,0 +1,176 @@
+{
+  "schema_version": 2,
+  "scope": "sanitized aggregate evidence for the Hugging Face model card",
+  "original_controlled_e2b": {
+    "identity": {
+      "checkpoint": "StrandsAgents/strands-decider-E2B-gemma4-v1-2610",
+      "checkpoint_revision": "d383ecf8534b13d49b3b567a1b66f88fca6d50ba",
+      "gemma_base": "google/gemma-4-E2B-it",
+      "gemma_base_revision": "3e22461f65e89153144f8adb70e3b8c2cc9845a7",
+      "strands_source_commit": "0ac22a97e584f3ccf87cc9b8cc5fdbad57cdf534"
+    },
+    "standard": {
+      "rows": 3900,
+      "correct": 2847,
+      "accuracy": 0.73,
+      "source_sha256": "0065f310cd369c9197478bbf68b59b7b9ebe6bcbd6dc699433ec8126f3da2d61",
+      "baseline_predictions_sha256": "48a9908778fd7e2661f83ce18edb0e2a2c4a794845aef44d8267afb42bee8155"
+    },
+    "typed": {
+      "rows": 1200,
+      "correct": 745,
+      "accuracy": 0.6208333333333333,
+      "source_sha256": "c32db4d4a4cb4e9417b5b675b57859da6e011d4f8f0af567cd5fa1c5905d0263",
+      "baseline_predictions_sha256": "d6dc98552937d4a62633ae8edd4e788e22adb8a3b59f74202bfa2ee60da1deaf"
+    },
+    "jevbench": {
+      "correct": 178,
+      "total": 231,
+      "accuracy": 0.7705627705627706,
+      "binding": "frozen prospective protocol"
+    },
+    "standard_reversal": {
+      "rows": 3900,
+      "semantic_flips": 851,
+      "exact_flip_rate": 0.21820512820512822,
+      "display": "21.82%",
+      "treatment": "original option order versus complete reversal",
+      "semantic_alignment": "both probability vectors mapped into original semantic option order before argmax comparison",
+      "statistic": "argmax(original_probabilities) != argmax(reversed_probabilities)",
+      "task_counts": {
+        "arc_challenge": {"rows": 300, "flips": 54},
+        "arc_easy": {"rows": 300, "flips": 27},
+        "banking77": {"rows": 300, "flips": 30},
+        "boolq": {"rows": 300, "flips": 3},
+        "commonsense_qa": {"rows": 300, "flips": 57},
+        "hellaswag": {"rows": 300, "flips": 93},
+        "massive_intent": {"rows": 300, "flips": 31},
+        "mmlu": {"rows": 300, "flips": 90},
+        "openbookqa": {"rows": 300, "flips": 54},
+        "piqa": {"rows": 300, "flips": 98},
+        "sciq": {"rows": 300, "flips": 7},
+        "social_iqa": {"rows": 300, "flips": 38},
+        "winogrande": {"rows": 300, "flips": 269}
+      }
+    }
+  },
+  "published_failure_examples": {
+    "dataset": "AI2 Reasoning Challenge",
+    "subset": "ARC Easy",
+    "dataset_revision": "210d026faf",
+    "license": "CC BY-SA 4.0",
+    "citation": "Clark et al. (2018), Think you have Solved Question Answering? Try ARC",
+    "transformation": "questions paraphrased and option text shortened for presentation; item IDs retained",
+    "examples": [
+      {
+        "item_id": "Mercury_7044555",
+        "question_summary": "Which choice is not a weather instrument?",
+        "semantic_options": ["barometer", "thermometer", "anemometer", "millimeter"],
+        "correct_option": "millimeter",
+        "original": {
+          "presentation": ["barometer", "thermometer", "anemometer", "millimeter"],
+          "choice": "thermometer",
+          "semantic_probabilities": [0.23062306230623061, 0.38943894389438943, 0.347034703470347, 0.0329032903290329]
+        },
+        "reversed": {
+          "presentation": ["millimeter", "anemometer", "thermometer", "barometer"],
+          "choice": "barometer",
+          "semantic_probabilities": [0.42990000000000006, 0.36950000000000005, 0.18300000000000002, 0.017600000000000005]
+        }
+      },
+      {
+        "item_id": "NYSEDREGENTS_2015_8_32",
+        "question_summary": "Which device directly converts chemical energy to electrical energy?",
+        "semantic_options": ["solar-powered calculator", "wood-burning stove", "battery-powered flashlight", "wind-powered sailboat"],
+        "correct_option": "battery-powered flashlight",
+        "original": {
+          "presentation": ["solar-powered calculator", "wood-burning stove", "battery-powered flashlight", "wind-powered sailboat"],
+          "choice": "battery-powered flashlight",
+          "semantic_probabilities": [0.12240000000000001, 0.12290000000000001, 0.5589000000000001, 0.19580000000000003]
+        },
+        "reversed": {
+          "presentation": ["wind-powered sailboat", "battery-powered flashlight", "wood-burning stove", "solar-powered calculator"],
+          "choice": "solar-powered calculator",
+          "semantic_probabilities": [0.5614561456145615, 0.0967096709670967, 0.2873287328732873, 0.054505450545054505]
+        }
+      }
+    ]
+  },
+  "released_sample": {
+    "source": "project-authored non-benchmark example measured on v0.1.0",
+    "request": {
+      "state": "Choose the provider that best balances reliability and cost.",
+      "question": "Which provider should we select?",
+      "criteria": {
+        "Provider A": "$100 per month, 99.9% uptime",
+        "Provider B": "$80 per month, 99.5% uptime",
+        "Provider C": "$90 per month, 99.9% uptime"
+      }
+    },
+    "original_order": ["Provider A", "Provider B", "Provider C"],
+    "reversed_order": ["Provider C", "Provider B", "Provider A"],
+    "normal": {
+      "original": {
+        "choice": "Provider B",
+        "semantic_probabilities": {"Provider A": 0.289, "Provider B": 0.4049, "Provider C": 0.3061}
+      },
+      "reversed": {
+        "choice": "Provider B",
+        "semantic_probabilities": {"Provider A": 0.289, "Provider B": 0.4049, "Provider C": 0.3061}
+      }
+    },
+    "compare_choices": {
+      "original": {
+        "choice": "Provider B",
+        "semantic_probabilities": {"Provider A": 0.2889, "Provider B": 0.4059, "Provider C": 0.3051}
+      },
+      "reversed": {
+        "choice": "Provider B",
+        "semantic_probabilities": {"Provider A": 0.2889, "Provider B": 0.4059, "Provider C": 0.3051}
+      }
+    }
+  },
+  "retrofit": {
+    "normal": {
+      "standard": {"rows": 3900, "correct": 2827, "accuracy": 0.7248717948717949, "reversal_flips": 0},
+      "typed": {"rows": 1200, "correct": 754, "accuracy": 0.6283333333333333},
+      "jevbench": {"correct": 181, "total": 231, "accuracy": 0.7835497835497836}
+    },
+    "compare_choices": {
+      "standard": {"rows": 3900, "correct": 2826, "accuracy": 0.7246153846153847, "reversal_flips": 0},
+      "typed": {"rows": 1200, "correct": 754, "accuracy": 0.6283333333333333},
+      "jevbench": {"correct": 181, "total": 231, "accuracy": 0.7835497835497836}
+    },
+    "relational_test": {
+      "rows": 2000,
+      "normal_correct": 671,
+      "normal_accuracy": 0.3355,
+      "compare_choices_correct": 742,
+      "compare_choices_accuracy": 0.371,
+      "paired_gain": 0.0355,
+      "paired_ci_95": [0.022, 0.049],
+      "permutation_checks": 100028,
+      "permutation_passes": 100028
+    }
+  },
+  "evidence_sha256": {
+    "frozen_requirements": "f77270c9b41bcda06b55080a7365f1f22e96bd43974e1aa41aef102cfac0d79d",
+    "authority": "c28621d7c86cb394359194b02e02c65932187a952e7d6a0ac593044f4c85cbeb",
+    "baseline_generation_code": "62ac76f86b32dfb2132b8ff32d119ddd0eb7715f6dc4d98f9d2ab153699c6612",
+    "accepted_normal_report": "3fbbbd1f264c6fb296fa74caa4c36ea3b4e40a405e54824861e6280cea0234e2",
+    "terminal_hybrid_report": "0889747869f2f07d157370072a578db6aaa6f948acad0f317470fb176102ca30",
+    "portable_manifest": "faa52ee416545296fabafa4c0754be98216817f4efeda3e3fb64b4ea7f481974"
+  },
+  "evidence_boundary": {
+    "raw_baseline_rows_published": false,
+    "raw_probabilities_bulk_published": false,
+    "raw_item_prompts_published": false,
+    "raw_item_labels_published": false,
+    "attributed_paraphrased_failure_examples_published": 2,
+    "attributed_example_answers_published": 2,
+    "baseline_artifact_self_describes_model_revision": false,
+    "model_identity_binding": "later hash-bound authority and final report",
+    "probability_precision": "API-level probabilities rounded to four decimals and renormalized by the harness",
+    "permutation_scope": "complete reversal only for the original controlled baseline"
+  }
+}

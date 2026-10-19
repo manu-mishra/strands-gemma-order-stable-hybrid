@@ -1,0 +1,451 @@
+{
+  "schema_version": 2,
+  "status": "complete",
+  "scientific_disposition": "HYBRID PASS",
+  "scope": "sanitized aggregate release evidence; no item-level rows, prompts, labels, or responses",
+  "supported_execution": {
+    "request_scheduling": "serialized one-request-at-a-time",
+    "batch_size": 1,
+    "branch_execution": "full recomputation",
+    "attention_implementation": "eager",
+    "prefix_cache_supported": false,
+    "arbitrary_cross_request_batching_supported": false
+  },
+  "software_support": {
+    "python": ">=3.10",
+    "transformers": "==5.18.0"
+  },
+  "upstream_identities": {
+    "strands_source": {
+      "repository": "https://github.com/strands-labs/strands-decider",
+      "commit": "0ac22a97e584f3ccf87cc9b8cc5fdbad57cdf534"
+    },
+    "strands_checkpoint": {
+      "repository": "https://huggingface.co/StrandsAgents/strands-decider-E2B-gemma4-v1-2610",
+      "revision": "d383ecf8534b13d49b3b567a1b66f88fca6d50ba"
+    },
+    "gemma_base": {
+      "repository": "https://huggingface.co/google/gemma-4-E2B-it",
+      "revision": "3e22461f65e89153144f8adb70e3b8c2cc9845a7"
+    }
+  },
+  "artifact": {
+    "model_components_released": true,
+    "release_repository": "manu-mishra/strands-gemma-order-stable-hybrid",
+    "release_tag": "v0.1.0",
+    "local_release_path_environment_variable": "STRANDS_GEMMA_E2B_ARTIFACT_URI",
+    "default_mode": "normal",
+    "modes": [
+      "normal",
+      "compare_choices"
+    ],
+    "selected_candidates": {
+      "normal": "wd-0.1-epochs-25-seed-43",
+      "compare_choices": "rank-128-hidden-64-seed-17"
+    },
+    "identity_chain": {
+      "historical_hybrid_descriptor_sha256": "47748ebb2aca6df06dac46c4a91d075726cf96ef3d4d3c3319a6225bd8550926",
+      "portable_manifest_sha256": "faa52ee416545296fabafa4c0754be98216817f4efeda3e3fb64b4ea7f481974",
+      "preparation": "authenticates complete historical source inventories and normal/relational locks, validates their semantic identities, copies only allowlisted members, canonicalizes the relational configuration, and emits deterministic relative-path JSON",
+      "portable_provenance": "the portable manifest embeds historical lock digests and source-member digests; historical lock files are omitted from portable output",
+      "runtime": "validates the exact portable manifest structure and every admitted member; health exposes portable_manifest_sha256, selected candidate IDs, historical lock hashes, and upstream identities; inference exposes the same portable digest, the mode-specific candidate ID, and historical lock hashes"
+    },
+    "sha256": {
+      "historical_normal_lock": "a1bee0186af38614372ba2f6e2f058e8ebc94d5b72e0f2d18e87ac36d405cf5a",
+      "historical_relational_lock": "a1738049034a10890c74b6777ecfd015835fd74c98af71dc1e4c6479f9145b49",
+      "normal_head": "781f0f460975316cac306ae8bb7fa11dd1471d3e8b183140ac8c0aaf1a02e915",
+      "inherited_adapter": "c7786a59354aa190082b1c3aedb7ff3311fe260f070f360c4d3518762691c551"
+    }
+  },
+  "selection": {
+    "normal": {
+      "source_rows": 145504,
+      "selection_splits": {
+        "train": 1500,
+        "dev": 600
+      },
+      "candidate_count": 18,
+      "selected_candidate": "wd-0.1-epochs-25-seed-43",
+      "split_sha256": {
+        "train": "bcb574bb04eb7ac653c7f0aeee23331e93226ef2d160a679b8979de778d084b1",
+        "dev": "8c5476aded764f1089d32f97ba4576db8c777875b147759fbc1a3362cc835053"
+      }
+    },
+    "relational": {
+      "source_rows": 19000,
+      "role_splits": {
+        "train": 12000,
+        "dev": 2000,
+        "calibration": 3000,
+        "test": 2000
+      },
+      "selection_roles": [
+        "train",
+        "dev"
+      ],
+      "candidate_count": 9,
+      "selected_candidate": "rank-128-hidden-64-seed-17",
+      "test_payload_deserialized_before_candidate_lock": false,
+      "selection_resumed_after_test_access": false
+    }
+  },
+  "original_controlled_e2b": {
+    "standard": {"rows": 3900, "correct": 2847, "accuracy": 0.73},
+    "typed": {"rows": 1200, "correct": 745, "accuracy": 0.6208333333333333},
+    "jevbench": {"correct": 178, "total": 231, "accuracy": 0.7705627705627706},
+    "standard_reversal": {
+      "rows": 3900,
+      "semantic_flips": 851,
+      "exact_flip_rate": 0.21820512820512822,
+      "task_counts": {
+        "arc_challenge": {"rows": 300, "flips": 54},
+        "arc_easy": {"rows": 300, "flips": 27},
+        "banking77": {"rows": 300, "flips": 30},
+        "boolq": {"rows": 300, "flips": 3},
+        "commonsense_qa": {"rows": 300, "flips": 57},
+        "hellaswag": {"rows": 300, "flips": 93},
+        "massive_intent": {"rows": 300, "flips": 31},
+        "mmlu": {"rows": 300, "flips": 90},
+        "openbookqa": {"rows": 300, "flips": 54},
+        "piqa": {"rows": 300, "flips": 98},
+        "sciq": {"rows": 300, "flips": 7},
+        "social_iqa": {"rows": 300, "flips": 38},
+        "winogrande": {"rows": 300, "flips": 269}
+      },
+      "semantic_alignment": "original and reversed outputs mapped to source semantic option order before argmax comparison",
+      "evidence": "docs/order-sensitivity-evidence.md"
+    }
+  },
+  "quality": {
+    "normal": {
+      "standard": {
+        "tasks": 13,
+        "rows": 3900,
+        "correct": 2827,
+        "macro_accuracy": 0.7248717948717949,
+        "reversal_flips": 0,
+        "task_counts": {
+          "arc_challenge": { "n": 300, "correct": 214 },
+          "arc_easy": { "n": 300, "correct": 270 },
+          "banking77": { "n": 300, "correct": 252 },
+          "boolq": { "n": 300, "correct": 268 },
+          "commonsense_qa": { "n": 300, "correct": 189 },
+          "hellaswag": { "n": 300, "correct": 189 },
+          "massive_intent": { "n": 300, "correct": 216 },
+          "mmlu": { "n": 300, "correct": 157 },
+          "openbookqa": { "n": 300, "correct": 198 },
+          "piqa": { "n": 300, "correct": 230 },
+          "sciq": { "n": 300, "correct": 291 },
+          "social_iqa": { "n": 300, "correct": 189 },
+          "winogrande": { "n": 300, "correct": 164 }
+        }
+      },
+      "typed": {
+        "tasks": 4,
+        "rows": 1200,
+        "correct": 754,
+        "macro_accuracy": 0.6283333333333333,
+        "task_counts": {
+          "emotion": { "n": 300, "correct": 159 },
+          "hate_severity": { "n": 300, "correct": 148 },
+          "massive_intent": { "n": 300, "correct": 264 },
+          "sarcasm": { "n": 300, "correct": 183 }
+        },
+        "kind_counts": {
+          "choice": { "n": 600, "correct": 423 },
+          "noul": { "n": 300, "correct": 183 },
+          "score": { "n": 300, "correct": 148 }
+        }
+      },
+      "jevbench": {
+        "correct": 181,
+        "total": 231,
+        "accuracy": 0.7835497835497836
+      },
+      "schema_errors": 0
+    },
+    "compare_choices": {
+      "standard": {
+        "tasks": 13,
+        "rows": 3900,
+        "correct": 2826,
+        "macro_accuracy": 0.7246153846153847,
+        "brier": 0.37038960268843724,
+        "raw_t1_nll": 0.7103165728750872,
+        "reversal_flips": 0,
+        "mean_total_variation": 1.143649520863308e-09,
+        "task_counts": {
+          "arc_challenge": { "n": 300, "correct": 214 },
+          "arc_easy": { "n": 300, "correct": 270 },
+          "banking77": { "n": 300, "correct": 252 },
+          "boolq": { "n": 300, "correct": 268 },
+          "commonsense_qa": { "n": 300, "correct": 190 },
+          "hellaswag": { "n": 300, "correct": 185 },
+          "massive_intent": { "n": 300, "correct": 216 },
+          "mmlu": { "n": 300, "correct": 156 },
+          "openbookqa": { "n": 300, "correct": 199 },
+          "piqa": { "n": 300, "correct": 231 },
+          "sciq": { "n": 300, "correct": 291 },
+          "social_iqa": { "n": 300, "correct": 191 },
+          "winogrande": { "n": 300, "correct": 163 }
+        }
+      },
+      "typed": {
+        "tasks": 4,
+        "rows": 1200,
+        "correct": 754,
+        "macro_accuracy": 0.6283333333333333,
+        "brier": 0.5282308786932356,
+        "raw_t1_nll": 1.0240002035450935,
+        "task_counts": {
+          "emotion": { "n": 300, "correct": 159 },
+          "hate_severity": { "n": 300, "correct": 148 },
+          "massive_intent": { "n": 300, "correct": 264 },
+          "sarcasm": { "n": 300, "correct": 183 }
+        },
+        "kind_counts": {
+          "choice": { "n": 600, "correct": 423 },
+          "noul": { "n": 300, "correct": 183 },
+          "score": { "n": 300, "correct": 148 }
+        }
+      },
+      "jevbench": {
+        "correct": 181,
+        "total": 231,
+        "accuracy": 0.7835497835497836
+      },
+      "schemas": {
+        "valid": 5331,
+        "total": 5331,
+        "errors": 0
+      }
+    },
+    "mode_delta": {
+      "compare_minus_normal_standard_correct": -1,
+      "compare_minus_normal_standard_accuracy": -0.0002564102564102,
+      "compare_minus_normal_standard_percentage_points": -0.02564102564102,
+      "typed_accuracy_change": 0.0,
+      "jevbench_correct_change": 0
+    },
+    "probability_statement": {
+      "temperature": 1,
+      "calibration_claimed": false
+    }
+  },
+  "relational_test": {
+    "rows": 2000,
+    "tasks": 6,
+    "option_widths": [4, 5, 6, 7, 8],
+    "independent": {
+      "correct": 671,
+      "overall_accuracy": 0.33550000190734863,
+      "macro_accuracy": 0.33548668026924133,
+      "raw_nll": 1.585288166999817
+    },
+    "compare_choices": {
+      "correct": 742,
+      "overall_accuracy": 0.3709999918937683,
+      "macro_accuracy": 0.37105219066143036,
+      "raw_nll": 1.538940668106079
+    },
+    "task_counts": {
+      "relative_dominance": {
+        "n": 333,
+        "independent_correct": 95,
+        "compare_choices_correct": 130
+      },
+      "relative_max": {
+        "n": 334,
+        "independent_correct": 130,
+        "compare_choices_correct": 107
+      },
+      "relative_mean": {
+        "n": 333,
+        "independent_correct": 108,
+        "compare_choices_correct": 127
+      },
+      "relative_min": {
+        "n": 334,
+        "independent_correct": 103,
+        "compare_choices_correct": 106
+      },
+      "relative_second": {
+        "n": 333,
+        "independent_correct": 100,
+        "compare_choices_correct": 105
+      },
+      "relative_unique": {
+        "n": 333,
+        "independent_correct": 135,
+        "compare_choices_correct": 167
+      }
+    },
+    "paired_outcomes": {
+      "both_correct": 612,
+      "independent_only_correct": 59,
+      "compare_choices_only_correct": 130,
+      "neither_correct": 1199,
+      "total": 2000
+    },
+    "paired_gain": {
+      "accuracy": 0.0355,
+      "percentage_points": 3.55,
+      "ci_95_accuracy": [0.022, 0.049],
+      "ci_95_percentage_points": [2.2, 4.9],
+      "method": "paired percentile bootstrap",
+      "replicates": 20000,
+      "seed": 20261017
+    },
+    "permutations": {
+      "checks": 100028,
+      "passes": 100028,
+      "exhaustive_items_up_to_five_options": 821,
+      "deterministic_balanced_or_cyclic_items_over_five_options": 1179,
+      "by_width": {
+        "4": { "items": 407, "checks": 9768, "passes": 9768, "strategy": "exhaustive" },
+        "5": { "items": 414, "checks": 49680, "passes": 49680, "strategy": "exhaustive" },
+        "6": { "items": 422, "checks": 15192, "passes": 15192, "strategy": "deterministic balanced/cyclic" },
+        "7": { "items": 388, "checks": 13580, "passes": 13580, "strategy": "deterministic balanced/cyclic" },
+        "8": { "items": 369, "checks": 11808, "passes": 11808, "strategy": "deterministic balanced/cyclic" }
+      },
+      "maximum_mapped_logit_absolute_error": 4.76837158203125e-07
+    },
+    "disabled_residual_preserved_base_logits_byte_for_byte": true
+  },
+  "evidence_bindings": {
+    "protocol_sha256": {
+      "frozen_requirements": "f77270c9b41bcda06b55080a7365f1f22e96bd43974e1aa41aef102cfac0d79d",
+      "execution": "be5890fcdcfb8be8551df0ad505f379a6e14d0111fc4fd40532384a01c12a73c"
+    },
+    "report_sha256": {
+      "normal_selection_manifest": "90b7d394396ec9133f3fcbc0ac7d4614c142456b2b041cc6deecf0e168d44c74",
+      "normal_fit_evidence": "d40418440ec8745f14144defbbc383daab59bafe43f8ee6b1263672214886c5a",
+      "relational_roles_manifest": "fe60a58da67493040fdabda2064c51d35fce743c60c1026ddd8d46e51e985a07",
+      "relational_fit_evidence": "868ad2572ff500dbcb3b982bd6f4d61bdd32ddb08c92702b1280a690317443fc",
+      "relational_candidate_lock": "a1738049034a10890c74b6777ecfd015835fd74c98af71dc1e4c6479f9145b49",
+      "relational_test": "145d13a51eb71741960e9992b107dddd54d2e40e6cb57bb5c9471f7206bca0c4",
+      "accepted_normal": "3fbbbd1f264c6fb296fa74caa4c36ea3b4e40a405e54824861e6280cea0234e2",
+      "hybrid_terminal": "0889747869f2f07d157370072a578db6aaa6f948acad0f317470fb176102ca30",
+      "independent_terminal_audit": "960777615180397d0a1d5663779cf64cef0206a29a75e03187d558232dbdbbb0",
+      "relational_test_feature_manifest": "5d6b96de25d2023841811c582db6898cd1f69ace937138002e0200f09ea11031"
+    },
+    "source_sha256": {
+      "normal_selection_source": "78094e81544acc5cb28501728300035ae0bcd759db908baa8d7b2816c0b5cbfd",
+      "relational_source": "bbbe570ffc96085944064ded23a858c78d9cc63a435b6c2cee3518b935e86bfa",
+      "relational_role_train": "4afe168ef0c0b068406be8fad6cbcb3c66f406c8bb14864e66e36882f4192e06",
+      "relational_role_dev": "97622c0db745114becb47157b09f4bfb6e16bd09e9b66de2a307434d08bba38d",
+      "relational_role_calibration": "dcbbfcaf94718230651007edd7c3c67fa68cc08b168df80127f65f7c8386ebe5",
+      "relational_role_test": "228494b304571bddeb721e5f7437591b1878b71b2ba0b7b01021b53dadb0d8f0",
+      "standard_evaluation_source": "0065f310cd369c9197478bbf68b59b7b9ebe6bcbd6dc699433ec8126f3da2d61",
+      "typed_evaluation_source": "c32db4d4a4cb4e9417b5b675b57859da6e011d4f8f0af567cd5fa1c5905d0263",
+      "controlled_option_branch_source": "bef3b74630a65ad6d49abab23c5a94572cb07b04a40a2456e597191bd66a1e3a",
+      "hybrid_runtime_source": "b86815b546df7b83663c2c0f9933fa78fd0b60a71bf34056657ab7ad358ee340",
+      "performance_source": "a159c0402633381d781aa818b98503e3fedb98cab758151ad651084707b42b1b",
+      "hybrid_final_scorer": "da19bd2616b7a9c4e8346f1327a10ed394e7a22190a2cd1ef5179ec897756c41"
+    }
+  },
+  "gates": {
+    "artifact": "pass",
+    "normal_integrity": "pass",
+    "normal_standard": "pass",
+    "normal_typed": "pass",
+    "normal_jevbench": "pass",
+    "relational_value": "pass",
+    "relational_permutations": "pass",
+    "compare_standard": "pass",
+    "compare_typed": "pass",
+    "compare_jevbench": "pass",
+    "supported_order_contract": "pass",
+    "schema_validity": "pass",
+    "runtime_evidence": "pass"
+  },
+  "negative_backend_evidence": {
+    "shared_prefix_bf16_cache": {
+      "status": "rejected",
+      "required_cases": 14,
+      "failed_raw_logit_cases": 8,
+      "frozen_tolerances": {
+        "raw_logit": 0.03,
+        "probability": 0.02,
+        "mapped_permutation": 1e-06
+      },
+      "maximum_raw_logit_delta": 0.07161378860473633,
+      "initial_two_option_delta": 0.06663298606872559,
+      "cache_serial_bf16_delta": 0.052529335021972656,
+      "cache_batch_bf16_delta": 0.06663298606872559,
+      "cache_serial_fp32_delta": 2.384185791015625e-06,
+      "cache_batch_fp32_delta": 2.6226043701171875e-06,
+      "observed_speedup_range": [0.97, 7.102]
+    },
+    "arbitrary_bf16_cross_request_batching": {
+      "status": "rejected",
+      "solo_permutation_checks": 186,
+      "solo_semantic_flips": 0,
+      "placement_checks": 744,
+      "placement_semantic_flips": 26,
+      "maximum_aligned_logit_delta": 0.10336923599243164,
+      "maximum_probability_delta": 0.01935756206512451,
+      "near_tie_gap": 0.051470041275024414,
+      "frozen_near_tie_admission_interval": "(0, 0.002]"
+    }
+  },
+  "performance": {
+    "environment": {
+      "gpu": "NVIDIA L4",
+      "python": "3.12.3",
+      "torch": "2.14.1+cu130",
+      "threads": 8,
+      "warmups_per_cell": 2,
+      "measurements_per_cell": 20,
+      "same_recorded_environment": true,
+      "same_physical_host_cryptographically_proven": false
+    },
+    "normal": {
+      "load_ms": 8247.349591,
+      "peak_gpu_allocated_bytes": 10002322944,
+      "peak_gpu_reserved_bytes": 10305404928,
+      "by_option_count": {
+        "2": { "mean_ms": 166.8028116, "p50_ms": 166.452577, "p95_ms": 171.131139, "requests_per_second": 5.995102782787866 },
+        "4": { "mean_ms": 330.06025785, "p50_ms": 330.8809175, "p95_ms": 332.76910655, "requests_per_second": 3.0297497993668245 },
+        "8": { "mean_ms": 653.64340445, "p50_ms": 653.919726, "p95_ms": 659.89630925, "requests_per_second": 1.5298861629934708 },
+        "16": { "mean_ms": 1320.2192771, "p50_ms": 1319.7999625, "p95_ms": 1333.5155274, "requests_per_second": 0.7574499307392366 }
+      }
+    },
+    "compare_choices": {
+      "load_ms": 8251.027164,
+      "peak_gpu_allocated_bytes": 10002384384,
+      "peak_gpu_reserved_bytes": 10305404928,
+      "by_option_count": {
+        "2": { "mean_ms": 167.8993888, "p50_ms": 166.874057, "p95_ms": 171.2116003, "requests_per_second": 5.955947827726696 },
+        "4": { "mean_ms": 330.1039311, "p50_ms": 329.9523545, "p95_ms": 331.68423495, "requests_per_second": 3.0293489588800595 },
+        "8": { "mean_ms": 659.54261005, "p50_ms": 658.479255, "p95_ms": 665.75533615, "requests_per_second": 1.5162022661798757 },
+        "16": { "mean_ms": 1321.58537075, "p50_ms": 1320.5832425, "p95_ms": 1329.61684645, "requests_per_second": 0.7566669714514922 }
+      }
+    }
+  },
+  "release_boundary": {
+    "github_release": [
+      "complete source distribution and runtime",
+      "documentation, tests, tooling, and notices",
+      "aggregate evaluation metrics",
+      "aggregate conformance metrics",
+      "aggregate performance metrics"
+    ],
+    "hugging_face_release": [
+      "normal model component",
+      "relational model component",
+      "portable manifest",
+      "Hub model card and aggregate evidence"
+    ],
+    "upstream_dependency": [
+      "Gemma base weights at the pinned publisher revision"
+    ],
+    "not_published": [
+      "training and evaluation corpora",
+      "item-level evaluation material",
+      "prompts and answer keys",
+      "raw benchmark responses",
+      "infrastructure records"
+    ]
+  }
+}
