@@ -187,6 +187,7 @@ The wheel is deliberately runtime-only: it contains the runtime package, entry p
 - [Model card](https://github.com/manu-mishra/strands-gemma-order-stable-hybrid/blob/v0.1.0/MODEL_CARD.md)
 - [Architecture and backend boundary](https://github.com/manu-mishra/strands-gemma-order-stable-hybrid/blob/v0.1.0/docs/architecture.md)
 - [Aggregate results](https://github.com/manu-mishra/strands-gemma-order-stable-hybrid/blob/v0.1.0/results/results.json)
+- [Option-order sensitivity across public decision models](docs/order-sensitivity-across-models.md)
 - [Apache-2.0 license](LICENSE)
 - [MIT license for project-authored portions](LICENSE-MIT)
 - [Notice](NOTICE)
